@@ -27,10 +27,11 @@ std::vector<unsigned int> Fermat_Part2(unsigned int a)
 	unsigned int x = static_cast<unsigned int>(sqrt(a));
 	if (x == sqrt(a))
 	{
-		return std::vector<unsigned int>{ x };
+		x = static_cast<unsigned int>(sqrt(x));
+		return std::vector<unsigned int>{ x, x };
 	}
-	x++;
-	while (x < (a + 1) / 2)
+	//x++;
+	while (++x < (a + 1) / 2)
 	{
 		y = x * x - a;
 		if (y > 0 && (static_cast<unsigned int>(sqrt(y)) == sqrt(y)))
@@ -38,7 +39,7 @@ std::vector<unsigned int> Fermat_Part2(unsigned int a)
 			y = static_cast<unsigned int>(sqrt(y));
 			return Fermat_Part2(x + y) + Fermat_Part2(x - y);
 		}
-		x++;
+		//x++;
 	}
 	return std::vector<unsigned int>{ a };
 }
@@ -47,16 +48,9 @@ std::vector<unsigned int> Fermat(unsigned int a)
 {
 	std::vector<unsigned int> result;
 	result.reserve(128);
-	bool check = 1;
 	while (!((a >> 0) & 1)) 
 	{
-		for (auto test : result)
-		{
-			if (test == 2)
-				check = 0;
-		}
-		if (check)
-			result.emplace_back(2);
+		result.emplace_back(2);
 		a = a >> 1;
 	}
 	result = result + Fermat_Part2(a);
