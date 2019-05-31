@@ -69,7 +69,7 @@ int main()
 	std::cin >> q;
 	std::cout << "Gimme c: ";
 	std::cin >> result;
-	std::cout << fast_mod(q, n, result) << std::endl;
+	std::cout << fast_mod(n, q, result) << std::endl;
 
 	std::cout << "Gimme a: ";
 	std::cin >> n;
