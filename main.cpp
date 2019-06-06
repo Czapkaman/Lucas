@@ -27,8 +27,7 @@ std::vector<unsigned int> Fermat_Part2(unsigned int a)
 	unsigned int x = static_cast<unsigned int>(sqrt(a));
 	if (x == sqrt(a))
 	{
-		x = static_cast<unsigned int>(sqrt(x));
-		return std::vector<unsigned int>{ x, x };
+		return  Fermat_Part2(x) + Fermat_Part2(x);
 	}
 	//x++;
 	while (++x < (a + 1) / 2)
